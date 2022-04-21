@@ -1,0 +1,15 @@
+version: '2.1'
+services:
+    jupyter:
+        #image: data_science_analysis
+        #container_name: data_science_analysis
+        image: jupyter/scipy-notebook:lab-3.1.14
+        restart: 'no'
+        volumes:
+            - ./src:/home/jovyan/notebooks
+        ports:
+            - "8888:8888"
+#        environment:
+#            NB_UID: ${UID}
+#            NB_GID: ${GID}
+
