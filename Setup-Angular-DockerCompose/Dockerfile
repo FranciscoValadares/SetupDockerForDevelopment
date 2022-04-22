@@ -15,3 +15,4 @@ COPY --chown=node:node package.json package-lock.json ./
 RUN npm ci --quiet
 
 COPY --chown=node:node . .
+
