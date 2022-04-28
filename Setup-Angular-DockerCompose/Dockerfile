@@ -12,6 +12,9 @@ WORKDIR  /home/node/app
 USER node
 
 COPY --chown=node:node package.json package-lock.json ./
+
+#RUN export NODE_OPTIONS=--openssl-legacy-provider
+
 RUN npm ci --quiet
 
 COPY --chown=node:node . .
