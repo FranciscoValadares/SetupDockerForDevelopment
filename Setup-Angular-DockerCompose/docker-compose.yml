@@ -17,3 +17,4 @@ volumes:
 
   #Coloque a informacção abaixo no arquivo package.json do projeto
   #"start": "ng serve --open --host 0.0.0.0 --port 4200 --disable-host-check",
+  #para windown só funcionou com esse "start": "export NODE_OPTIONS=--openssl-legacy-provider && ng serve --host 0.0.0.0 --disable-host-check --poll=2000",
