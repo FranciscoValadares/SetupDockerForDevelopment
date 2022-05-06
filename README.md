@@ -14,3 +14,7 @@ Coloque a informacção abaixo no arquivo package.json do projeto Angular:
    * https://markfknight.dev/posts/angular-in-docker/
 
  
+# Criar link simbólido do docker para disco com mais espaço
+  
+  mklink /j "C:\Users\francisco.valadares\AppData\Local\Docker" "D:\Docker"
+  mklink /j "C:\ProgramData\DockerDesktop" "D:\ProgramData\DockerDesktop"
