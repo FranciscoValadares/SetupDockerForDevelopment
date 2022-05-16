@@ -1,29 +1,22 @@
-FROM fastdotai/fastai:2020-10-02
+FROM continuumio/anaconda3:latest
 
-RUN useradd fastai-user 
+RUN /opt/conda/bin/conda install jupyter -y --quiet && \
+    mkdir /opt/notebooks && \
+    jupyter notebook --generate-config --no-browser --allow-root
 
-RUN apt-get update 
+RUN conda install -y -c conda-forge scrapy
 
-RUN apt-get -y install nano\
-   graphviz \
-   libwebp-dev
+RUN conda install -c fastchan fastai
+RUN conda install -c fastbook
+#RUN pip install plotly cufflinks PyLyrics zipcode humanize
 
-RUN pip uninstall -y pillow
+COPY requirements.txt /code/
+RUN pip install -r /code/requirements.txt
 
-RUN pip install pillow 
-    
-RUN pip install kaggle \
-    dtreeviz \
-    treeinterpreter
+#RUN apt-get install cron -y
+ADD start.sh /opt/conda/bin/
+RUN chmod -R 777 /opt/conda/bin/start.sh
 
-RUN pip install waterfallcharts
 
-WORKDIR /home/
-
-RUN echo '#!/bin/bash\njupyter notebook --ip=0.0.0.0 --no-browser' >> run_jupyter.sh
-
-WORKDIR /home/fastai-user/
-
-USER fastai-user
-
-ENV HOME "/home/fastai-user"
+#COPY cron/* /var/spool/cron/crontabs
+CMD ["/opt/conda/bin/start.sh"]
