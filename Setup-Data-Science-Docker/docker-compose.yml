@@ -1,11 +1,12 @@
 version: "3.9"
 
-services:
-    jupyter:
-        image: data_science_analysis
-        build: .
-        restart: always
-        volumes:
-            - ./src:/home/jovyan/notebooks
-        ports:
-            - "8889:8889"
+server:
+  container_name: jupyter_ds_analysis
+  build: .
+  #env_file: .env
+  ports:
+    - "8888:8888"
+  volumes:
+    - ./notebooks:/opt/notebooks
+  restart: always      
+  
